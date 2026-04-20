@@ -1,0 +1,282 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #0a0a0f;
+  --color-bg-2: #12121a;
+  --color-bg-3: #1a1a28;
+  --color-accent: #c8f261;
+  --color-accent-2: #7c6ef5;
+  --color-text: #f0f0e8;
+  --color-muted: #888899;
+  --color-border: rgba(200, 242, 97, 0.15);
+
+  --font-display: var(--font-syne);
+  --font-mono: var(--font-silkscreen);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html {
+  background-color: #06060a;
+}
+
+/* Solid dark background */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background-color: #06060a;
+}
+
+/* Pixel-art cursor — standard OS arrow shape, pale yellow fill, chunky pixels */
+* {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' shape-rendering='crispEdges' viewBox='0 0 10 10'><rect x='0' y='0' width='1' height='1' fill='%23000'/><rect x='0' y='1' width='1' height='1' fill='%23000'/><rect x='1' y='1' width='1' height='1' fill='%23f5e6a3'/><rect x='0' y='2' width='1' height='1' fill='%23000'/><rect x='1' y='2' width='2' height='1' fill='%23f5e6a3'/><rect x='0' y='3' width='1' height='1' fill='%23000'/><rect x='1' y='3' width='3' height='1' fill='%23f5e6a3'/><rect x='0' y='4' width='1' height='1' fill='%23000'/><rect x='1' y='4' width='4' height='1' fill='%23f5e6a3'/><rect x='0' y='5' width='1' height='1' fill='%23000'/><rect x='1' y='5' width='5' height='1' fill='%23f5e6a3'/><rect x='0' y='6' width='1' height='1' fill='%23000'/><rect x='1' y='6' width='3' height='1' fill='%23f5e6a3'/><rect x='4' y='6' width='1' height='1' fill='%23000'/><rect x='0' y='7' width='1' height='1' fill='%23000'/><rect x='1' y='7' width='1' height='1' fill='%23f5e6a3'/><rect x='2' y='7' width='1' height='1' fill='%23000'/><rect x='3' y='7' width='2' height='1' fill='%23f5e6a3'/><rect x='5' y='7' width='1' height='1' fill='%23000'/><rect x='0' y='8' width='2' height='1' fill='%23000'/><rect x='4' y='8' width='2' height='1' fill='%23f5e6a3'/><rect x='6' y='8' width='1' height='1' fill='%23000'/><rect x='5' y='9' width='2' height='1' fill='%23000'/></svg>") 0 0, auto;
+}
+
+a,
+button,
+[role='button'] {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' shape-rendering='crispEdges' viewBox='0 0 10 10'><rect x='0' y='0' width='1' height='1' fill='%23000'/><rect x='0' y='1' width='1' height='1' fill='%23000'/><rect x='1' y='1' width='1' height='1' fill='%23f5e6a3'/><rect x='0' y='2' width='1' height='1' fill='%23000'/><rect x='1' y='2' width='2' height='1' fill='%23f5e6a3'/><rect x='0' y='3' width='1' height='1' fill='%23000'/><rect x='1' y='3' width='3' height='1' fill='%23f5e6a3'/><rect x='0' y='4' width='1' height='1' fill='%23000'/><rect x='1' y='4' width='4' height='1' fill='%23f5e6a3'/><rect x='0' y='5' width='1' height='1' fill='%23000'/><rect x='1' y='5' width='5' height='1' fill='%23f5e6a3'/><rect x='0' y='6' width='1' height='1' fill='%23000'/><rect x='1' y='6' width='3' height='1' fill='%23f5e6a3'/><rect x='4' y='6' width='1' height='1' fill='%23000'/><rect x='0' y='7' width='1' height='1' fill='%23000'/><rect x='1' y='7' width='1' height='1' fill='%23f5e6a3'/><rect x='2' y='7' width='1' height='1' fill='%23000'/><rect x='3' y='7' width='2' height='1' fill='%23f5e6a3'/><rect x='5' y='7' width='1' height='1' fill='%23000'/><rect x='0' y='8' width='2' height='1' fill='%23000'/><rect x='4' y='8' width='2' height='1' fill='%23f5e6a3'/><rect x='6' y='8' width='1' height='1' fill='%23000'/><rect x='5' y='9' width='2' height='1' fill='%23000'/></svg>") 0 0, pointer;
+}
+
+body {
+  color: var(--color-text);
+  font-family: var(--font-mono), monospace;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+  image-rendering: pixelated;
+  position: relative;
+}
+
+/* Subtle vignette only */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-image: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  pointer-events: none;
+}
+
+/* Scattered pixel dust layer — big chunky dots, sparse */
+.pixel-stars {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  image-rendering: pixelated;
+  background-image:
+    radial-gradient(rgba(240, 240, 232, 0.85) 2px, transparent 2.5px),
+    radial-gradient(rgba(200, 242, 97, 0.7) 2px, transparent 2.5px),
+    radial-gradient(rgba(124, 110, 245, 0.8) 2px, transparent 2.5px),
+    radial-gradient(rgba(240, 240, 232, 0.4) 2px, transparent 2.5px);
+  background-size: 180px 180px, 260px 260px, 340px 340px, 120px 120px;
+  background-position: 40px 60px, 130px 200px, 90px 340px, 200px 80px;
+  animation: star-drift 90s linear infinite;
+}
+
+@keyframes star-drift {
+  0% {
+    background-position: 40px 60px, 130px 200px, 90px 340px, 200px 80px;
+  }
+  100% {
+    background-position: 220px 240px, 390px 460px, 430px 680px, 320px 200px;
+  }
+}
+
+/* Retro dithering pattern overlay */
+.pixel-dither {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  image-rendering: pixelated;
+  opacity: 0.12;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8' shape-rendering='crispEdges'><rect x='0' y='0' width='2' height='2' fill='%23c8f261'/><rect x='4' y='4' width='2' height='2' fill='%23c8f261'/></svg>");
+  background-repeat: repeat;
+}
+
+/* Pixel sprite float */
+.pixel-sprite {
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+  image-rendering: pixelated;
+  opacity: 0.18;
+  animation: sprite-float 12s ease-in-out infinite;
+}
+
+@keyframes sprite-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(4deg); }
+}
+
+/* Glitch effect for hero name */
+@keyframes glitch {
+  0%, 92%, 100% { transform: translate(0); text-shadow: none; }
+  93% { transform: translate(-2px, 1px); text-shadow: 2px 0 var(--color-accent), -2px 0 var(--color-accent-2); }
+  94% { transform: translate(2px, -1px); text-shadow: -2px 0 var(--color-accent), 2px 0 var(--color-accent-2); }
+  95% { transform: translate(-1px, 0); text-shadow: 1px 0 var(--color-accent); }
+  96% { transform: translate(0); text-shadow: none; }
+}
+
+.glitch {
+  animation: glitch 6s infinite;
+}
+
+/* Pixel pulse (for dots) */
+@keyframes pixel-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+.pixel-pulse {
+  animation: pixel-pulse 1.6s steps(3, end) infinite;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 30s linear infinite;
+}
+
+/* Noise overlay */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: 0.04;
+}
+
+/* Ghost text effect */
+.text-ghost {
+  -webkit-text-stroke: 2px rgba(200, 242, 97, 0.55);
+  color: transparent;
+}
+
+/* Tagline typography */
+.tagline {
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  color: #888899;
+  line-height: 1.7;
+  max-width: 520px;
+  font-weight: 400;
+}
+
+.tagline .highlight {
+  color: #f0f0e8;
+  font-weight: 700;
+}
+
+/* Currently panel (top-left status indicator) */
+.currently-panel {
+  position: relative;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 3rem;
+  z-index: 2;
+}
+
+.currently-panel .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #888899;
+  letter-spacing: 0.15em;
+}
+
+.currently-panel .status-box {
+  border: 1px solid rgba(200, 242, 97, 0.15);
+  padding: 14px 16px;
+  background: rgba(18, 18, 26, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 220px;
+  max-width: 280px;
+}
+
+.currently-panel .status-item {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #888899;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.currently-panel .status-item.active {
+  color: #c8f261;
+}
+
+.currently-panel .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #888899;
+  display: inline-block;
+}
+
+.currently-panel .dot.active {
+  background: #c8f261;
+  box-shadow: 0 0 6px #c8f261;
+  animation: currently-pulse 2s ease-in-out infinite;
+}
+
+@keyframes currently-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.currently-panel .timezone {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: #888899;
+  letter-spacing: 0.1em;
+  text-align: left;
+  margin-top: 4px;
+}
+
+/* Rotating badge — solo on the right, vertically centered in the hero */
+.hero-badge {
+  position: absolute;
+  right: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .currently-panel,
+  .hero-badge {
+    display: none;
+  }
+}
+
+/* Blinking cursor */
+.cursor-blink::after {
+  content: "▌";
+  display: inline-block;
+  color: var(--color-accent);
+  animation: blink 1s step-end infinite;
+  margin-left: 4px;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
