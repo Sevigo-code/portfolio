@@ -18,18 +18,20 @@ export const projects: Project[] = [
   {
     id: "restaurant-manager",
     number: "01",
-    category: "SaaS / Restaurantes",
-    title: "Restaurant Manager",
+    category: "SaaS B2B / Restaurantes",
+    title: "Sistema de gestión para restaurantes",
     description:
-      "MVP full-stack de gestión para restaurantes: menús, mesas, pedidos y reportes. Arquitectura limpia, pensada para escalar como SaaS con modelo de suscripción.",
+      "SaaS administrativo para pequeños restaurantes: gestión de inventario de ingredientes, cálculo de costos de recetas, análisis de rentabilidad y registro de preparaciones. Arquitectura limpia escalable, validado con cliente real, en camino a MVP comercial.",
     tags: [
       { label: "ASP.NET Core 8", accent: true },
       { label: "React 18", accent: true },
-      { label: "SQL Server" },
       { label: "Entity Framework" },
-      { label: "Clean Arch" },
+      { label: "SQL Server" },
+      { label: "Recharts" },
+      { label: "Clean Architecture" },
     ],
     featured: true,
+    href: "https://github.com/Sevigo-code",
   },
   {
     id: "cartas-sin-marcar",
@@ -59,19 +61,6 @@ export const projects: Project[] = [
       { label: "WhatsApp Business", accent: true },
       { label: "SEO local" },
       { label: "Consultoría" },
-    ],
-  },
-  {
-    id: "proximo-saas",
-    number: "04",
-    category: "En construcción",
-    title: "Próximo proyecto SaaS",
-    description:
-      "Nuevo producto web en desarrollo. Stack moderno, enfocado en mercado latinoamericano. Próximamente.",
-    tags: [
-      { label: "Next.js" },
-      { label: "Prisma" },
-      { label: "Supabase" },
     ],
   },
 ];

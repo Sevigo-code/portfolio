@@ -52,11 +52,36 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-12 max-w-lg font-mono text-sm leading-relaxed text-muted"
+          className="mb-8 max-w-lg font-mono text-sm leading-relaxed text-muted"
         >
           Estoy disponible para freelance, colaboraciones y proyectos
           interesantes. Cuéntame tu idea.
         </motion.p>
+
+        {/* CV download */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+          className="mb-12"
+        >
+          <motion.a
+            href="/juan-cartagena-cv.pdf"
+            download
+            whileHover={{
+              y: -3,
+              borderColor: "var(--color-accent)",
+              color: "var(--color-accent)",
+              boxShadow: "4px 4px 0 0 var(--color-accent-2)",
+            }}
+            whileTap={{ y: 0, boxShadow: "0px 0px 0 0 var(--color-accent-2)" }}
+            className="inline-flex items-center gap-2 border border-[--color-border] px-5 py-3 font-mono text-xs uppercase tracking-[0.1em] text-muted"
+          >
+            <span>↓</span>
+            <span>Descargar CV</span>
+          </motion.a>
+        </motion.div>
 
         {/* Links */}
         <motion.div

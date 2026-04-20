@@ -24,15 +24,15 @@ export default function Hero() {
             <div className="status-box">
               <div className="status-item active">
                 <span className="dot active" />
-                <span>Building SaaS</span>
+                <span>Building SaaS restaurantero</span>
               </div>
               <div className="status-item">
                 <span className="dot" />
-                <span>Freelance projects</span>
+                <span>Open to freelance</span>
               </div>
               <div className="status-item">
                 <span className="dot" />
-                <span>Learning & coffee</span>
+                <span>English C1 · Remote ready</span>
               </div>
             </div>
             <div className="timezone">GMT-5 · ONLINE</div>
@@ -84,10 +84,11 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="tagline mt-8"
           >
-            <span className="highlight">Desarrollador full-stack</span> enfocado
-            en construir productos digitales reales para negocios que quieren
-            crecer — desde <span className="highlight">SaaS</span> hasta
-            presencia local.
+            <span className="highlight">Desarrollador full-stack</span> con experiencia
+            en .NET, Angular y React construyendo soluciones escalables con
+            <span className="highlight"> arquitectura limpia</span>. Actualmente
+            desarrollando un <span className="highlight">SaaS B2B</span> para el sector
+            restaurantero.
           </motion.p>
 
           {/* Buttons */}

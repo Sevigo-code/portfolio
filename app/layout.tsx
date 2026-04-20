@@ -18,13 +18,13 @@ const silkscreen = Silkscreen({
 });
 
 export const metadata: Metadata = {
-  title: "Juan Cartagena — Developer Portfolio",
+  title: "Juan Cartagena — Full-stack Developer",
   description:
-    "Desarrollador full-stack freelance en Bogotá, Colombia. Proyectos SaaS, aplicaciones web y presencia digital para negocios.",
+    "Desarrollador full-stack con experiencia en .NET, Angular y React. Especializado en arquitectura limpia, SaaS B2B y soluciones escalables. Bogotá, Colombia.",
   openGraph: {
-    title: "Juan Cartagena — Developer Portfolio",
+    title: "Juan Cartagena — Full-stack Developer",
     description:
-      "Desarrollador full-stack freelance en Bogotá, Colombia. Proyectos SaaS, aplicaciones web y presencia digital para negocios.",
+      "Full-stack dev especializado en .NET, React y arquitectura limpia. Disponible para proyectos freelance.",
     url: "https://juancartagena.dev",
     siteName: "Juan Cartagena",
     locale: "es_CO",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Juan Cartagena — Developer Portfolio",
+    title: "Juan Cartagena — Full-stack Developer",
   },
 };
 
