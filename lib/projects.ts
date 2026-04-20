@@ -31,7 +31,7 @@ export const projects: Project[] = [
       { label: "Clean Architecture" },
     ],
     featured: true,
-    href: "https://github.com/Sevigo-code",
+    href: "https://github.com/Sevigo-code/restaurant-mvp",
   },
   {
     id: "cartas-sin-marcar",
