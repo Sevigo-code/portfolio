@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 const links = [
   { label: "Sobre mí", href: "#sobre-mi" },
@@ -12,6 +13,8 @@ const links = [
 ];
 
 export default function Nav() {
+  const [open, setOpen] = useState(false);
+
   return (
     <motion.nav
       initial={{ y: -20, opacity: 0 }}
@@ -24,6 +27,7 @@ export default function Nav() {
           href="#"
           whileHover={{ scale: 1.05 }}
           className="font-display text-lg font-bold tracking-[-0.04em] text-text"
+          onClick={() => setOpen(false)}
         >
           JC
           <motion.span
@@ -35,7 +39,8 @@ export default function Nav() {
           </motion.span>
         </motion.a>
 
-        <ul className="flex items-center gap-6 font-mono text-xs uppercase tracking-[0.1em] text-muted">
+        {/* Desktop links */}
+        <ul className="hidden md:flex items-center gap-6 font-mono text-xs uppercase tracking-[0.1em] text-muted">
           {links.map((link) => (
             <li key={link.href}>
               <a
@@ -48,7 +53,59 @@ export default function Nav() {
             </li>
           ))}
         </ul>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden flex h-9 w-9 flex-col items-center justify-center gap-[5px] border border-[--color-border]"
+        >
+          <span
+            className={`block h-[2px] w-4 bg-text transition-transform duration-200 ${
+              open ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-[2px] w-4 bg-text transition-opacity duration-200 ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`block h-[2px] w-4 bg-text transition-transform duration-200 ${
+              open ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden absolute right-4 top-full mt-2 w-56 border border-[--color-border] bg-[rgba(10,10,15,0.95)] backdrop-blur-xl shadow-[4px_4px_0_0_rgba(200,242,97,0.15)]"
+          >
+            <ul className="flex flex-col py-2">
+              {links.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="block px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors hover:text-accent hover:bg-[rgba(200,242,97,0.05)]"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
