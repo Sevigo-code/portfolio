@@ -67,7 +67,7 @@ export default function Services() {
 
         <p className="services-note">
           ¿Proyecto diferente o necesitas algo más específico?
-          <a href="#contacto"> Cuentame con confianza :).</a>
+          <a href="#contacto"> Cuéntame tu idea.</a>
         </p>
       </div>
     </section>
