@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { Logo } from "./Logo";
 
 const links = [
   { label: "Sobre mí", href: "#sobre-mi" },
@@ -23,21 +24,12 @@ export default function Nav() {
       className="fixed top-0 left-0 right-0 z-40 border-b border-[--color-border] bg-[rgba(10,10,15,0.7)] backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10">
-        <motion.a
-          href="#"
+        <motion.div
           whileHover={{ scale: 1.05 }}
-          className="font-display text-lg font-bold tracking-[-0.04em] text-text"
           onClick={() => setOpen(false)}
         >
-          JC
-          <motion.span
-            className="inline-block text-accent"
-            animate={{ opacity: [1, 0.2, 1] }}
-            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            .
-          </motion.span>
-        </motion.a>
+          <Logo size="sm" linked={true} />
+        </motion.div>
 
         {/* Desktop links */}
         <ul className="hidden md:flex items-center gap-6 font-mono text-xs uppercase tracking-[0.1em] text-muted">

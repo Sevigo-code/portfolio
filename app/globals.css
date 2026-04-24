@@ -555,3 +555,30 @@ body::after {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Logo JSX tag */
+.logo-link {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.logo-link:hover {
+  opacity: 0.8;
+}
+
+.logo-link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.logo-jsx {
+  position: relative;
+  transition: transform 0.2s ease;
+}
+
+.logo-link:hover .logo-jsx {
+  transform: translateX(2px);
+}
