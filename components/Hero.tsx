@@ -11,7 +11,7 @@ const fadeUp = {
 
 export default function Hero() {
   return (
-    <section className="relative z-10 flex min-h-screen items-center overflow-hidden px-6 pt-24 md:px-10">
+    <section className="relative z-10 flex min-h-screen items-center overflow-visible px-6 pt-24 md:px-10">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-12">
         {/* Left content */}
         <div className="max-w-2xl">

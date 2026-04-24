@@ -44,10 +44,11 @@ function RevealWord({ children, progress, range }: RevealWordProps) {
   const opacity = useTransform(progress, range, [REVEAL_CONFIG.initialOpacity, 1]);
 
   return (
-    <span className="reveal-word-wrapper">
+    <>
       <motion.span className="reveal-word" style={{ opacity }}>
         {children}
-      </motion.span>{' '}
-    </span>
+      </motion.span>
+      {' '}
+    </>
   );
 }
