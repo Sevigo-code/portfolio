@@ -36,10 +36,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         style={{ transformOrigin: "left" }}
       />
 
-      <TiltCard
-        href={project.href}
-        className="block"
-      >
+      <TiltCard className="block">
         <Wrapper {...wrapperProps} className="block">
         {/* Number & Category */}
         <div className="mb-3 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.1em] text-muted">
