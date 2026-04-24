@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'motion/react';
 import { REVEAL_CONFIG } from '@/lib/animationConfig';
 
@@ -17,7 +17,7 @@ export function RevealText({ children, className = '' }: RevealTextProps) {
     offset: ['start 1.2', 'end 0'],
   });
 
-  const words = children.split(' ');
+  const words = useMemo(() => children.split(' '), [children]);
 
   return (
     <p ref={containerRef} className={`reveal-text ${className}`}>
@@ -25,7 +25,7 @@ export function RevealText({ children, className = '' }: RevealTextProps) {
         const start = i / words.length;
         const end = start + 1 / words.length;
         return (
-          <RevealWord key={i} progress={scrollYProgress} range={[start, end]}>
+          <RevealWord key={`${i}-${word}`} progress={scrollYProgress} range={[start, end]}>
             {word}
           </RevealWord>
         );

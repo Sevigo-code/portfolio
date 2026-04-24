@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, ReactNode } from 'react';
+import { useRef, ReactNode, useMemo } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { TILT_CONFIG } from '@/lib/animationConfig';
 
@@ -17,14 +17,13 @@ export function TiltCard({ children, className = '', href, onClick }: TiltCardPr
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springX = useSpring(mouseX, {
+  const springConfig = useMemo(() => ({
     stiffness: TILT_CONFIG.springStiffness,
     damping: TILT_CONFIG.springDamping,
-  });
-  const springY = useSpring(mouseY, {
-    stiffness: TILT_CONFIG.springStiffness,
-    damping: TILT_CONFIG.springDamping,
-  });
+  }), []);
+
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
 
   const rotateX = useTransform(springY, [-0.5, 0.5], [TILT_CONFIG.maxTilt, -TILT_CONFIG.maxTilt]);
   const rotateY = useTransform(springX, [-0.5, 0.5], [-TILT_CONFIG.maxTilt, TILT_CONFIG.maxTilt]);

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useEffect, ReactNode } from 'react';
+import { useRef, useEffect, ReactNode, useMemo } from 'react';
 import { motion, useMotionValue, useSpring } from 'motion/react';
 import { MAGNETIC_CONFIG } from '@/lib/animationConfig';
 
@@ -20,20 +20,17 @@ export function MagneticButton({
   variant = 'primary',
 }: MagneticButtonProps) {
   const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
-
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springX = useSpring(x, {
+  const springConfig = useMemo(() => ({
     stiffness: MAGNETIC_CONFIG.springStiffness,
     damping: MAGNETIC_CONFIG.springDamping,
     mass: MAGNETIC_CONFIG.springMass,
-  });
-  const springY = useSpring(y, {
-    stiffness: MAGNETIC_CONFIG.springStiffness,
-    damping: MAGNETIC_CONFIG.springDamping,
-    mass: MAGNETIC_CONFIG.springMass,
-  });
+  }), []);
+
+  const springX = useSpring(x, springConfig);
+  const springY = useSpring(y, springConfig);
 
   useEffect(() => {
     const element = ref.current;
@@ -42,6 +39,8 @@ export function MagneticButton({
     const isTouchDevice = window.matchMedia('(hover: none)').matches;
     if (isTouchDevice) return;
 
+    const radiusSq = MAGNETIC_CONFIG.radius ** 2;
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = element.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
@@ -49,9 +48,9 @@ export function MagneticButton({
 
       const dx = e.clientX - centerX;
       const dy = e.clientY - centerY;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+      const distanceSq = dx * dx + dy * dy;
 
-      if (distance < MAGNETIC_CONFIG.radius) {
+      if (distanceSq < radiusSq) {
         x.set(dx * MAGNETIC_CONFIG.strength);
         y.set(dy * MAGNETIC_CONFIG.strength);
       } else {

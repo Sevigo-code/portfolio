@@ -20,7 +20,7 @@ const sizes = {
 export function Logo({ size = 'sm', linked = true, className = '' }: LogoProps) {
   const sizeStyle = sizes[size];
 
-  const handleClick = useCallback((e: React.MouseEvent) => {
+  const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
