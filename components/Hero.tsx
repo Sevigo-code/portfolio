@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import RotatingBadge from "./RotatingBadge";
+import { MagneticButton } from "./MagneticButton";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -97,30 +98,12 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.45 }}
             className="mt-10 flex items-center gap-4"
           >
-            <motion.a
-              href="#proyectos"
-              whileHover={{ y: -3, boxShadow: "4px 4px 0 0 var(--color-accent-2)" }}
-              whileTap={{ y: 0, boxShadow: "0px 0px 0 0 var(--color-accent-2)" }}
-              transition={{ duration: 0.15 }}
-              className="inline-flex items-center gap-2 bg-accent px-6 py-3 font-mono text-sm font-bold uppercase tracking-[0.1em] text-bg"
-            >
-              <span>Ver proyectos</span>
-              <motion.span
-                animate={{ x: [0, 4, 0] }}
-                transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                ▸
-              </motion.span>
-            </motion.a>
-            <motion.a
-              href="#contacto"
-              whileHover={{ y: -3, borderColor: "var(--color-accent)", color: "var(--color-accent)" }}
-              whileTap={{ y: 0 }}
-              transition={{ duration: 0.15 }}
-              className="inline-flex items-center gap-2 border border-[--color-border] px-6 py-3 font-mono text-sm uppercase tracking-[0.1em] text-text"
-            >
+            <MagneticButton href="#proyectos" variant="primary">
+              Ver proyectos →
+            </MagneticButton>
+            <MagneticButton href="#contacto" variant="ghost">
               Hablemos
-            </motion.a>
+            </MagneticButton>
           </motion.div>
         </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { RevealText } from "./RevealText";
 
 export default function About() {
   return (
@@ -22,24 +23,15 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="about-text"
           >
-            <p>
-              Soy estudiante de <span className="text-accent">Ingeniería de Software</span> en
-              ultimos semestres con experiencia profesional real construyendo aplicaciones
-              corporativas en SoftwareOne. Trabajé liderando una migración
-              Angular 12 → 16 en producción y desarrollando módulos completos
-              end-to-end con .NET y Angular.
-            </p>
-            <p>
-              Actualmente desarrollo de forma independiente un
-              <span className="text-accent"> SaaS B2B</span> para el sector
-              restaurantero, mientras colaboro con negocios locales en Bogotá
-              ayudándoles a construir su presencia digital.
-            </p>
-            <p>
-              Me interesa la arquitectura limpia, los productos bien diseñados,
-              y construir cosas que realmente resuelvan problemas
-              sin costar un ojo de la cara.
-            </p>
+            <RevealText className="about-paragraph">
+              Soy estudiante de Ingeniería de Software en ultimos semestres con experiencia profesional real construyendo aplicaciones corporativas en SoftwareOne. Trabajé liderando una migración Angular 12 → 16 en producción y desarrollando módulos completos end-to-end con .NET y Angular.
+            </RevealText>
+            <RevealText className="about-paragraph">
+              Actualmente desarrollo de forma independiente un SaaS B2B para el sector restaurantero, mientras colaboro con negocios locales en Bogotá ayudándoles a construir su presencia digital.
+            </RevealText>
+            <RevealText className="about-paragraph">
+              Me interesa la arquitectura limpia, los productos bien diseñados, y construir cosas que realmente resuelvan problemas sin costar un ojo de la cara.
+            </RevealText>
 
             <div className="about-stats">
               <div className="stat">

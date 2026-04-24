@@ -1,5 +1,6 @@
 'use client';
 
+import { useCallback } from 'react';
 import Link from 'next/link';
 
 type LogoProps = {
@@ -18,6 +19,11 @@ const sizes = {
 
 export function Logo({ size = 'sm', linked = true, className = '' }: LogoProps) {
   const sizeStyle = sizes[size];
+
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const content = (
     <span
@@ -40,9 +46,14 @@ export function Logo({ size = 'sm', linked = true, className = '' }: LogoProps) 
 
   if (linked) {
     return (
-      <Link href="/" className="logo-link" aria-label="Ir al inicio">
+      <button
+        onClick={handleClick}
+        className="logo-link"
+        aria-label="Scroll to top"
+        type="button"
+      >
         {content}
-      </Link>
+      </button>
     );
   }
 

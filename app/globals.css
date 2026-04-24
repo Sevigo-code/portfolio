@@ -582,3 +582,96 @@ body::after {
 .logo-link:hover .logo-jsx {
   transform: translateX(2px);
 }
+
+/* Magnetic Buttons */
+.magnetic-btn {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.9rem 2rem;
+  border: 1px solid;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.magnetic-btn-primary {
+  background: var(--color-accent);
+  color: #0a0a0f;
+  border-color: var(--color-accent);
+}
+
+.magnetic-btn-primary:hover {
+  background: transparent;
+  color: var(--color-accent);
+}
+
+.magnetic-btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: rgba(240, 240, 232, 0.2);
+}
+
+.magnetic-btn-ghost:hover {
+  border-color: var(--color-text);
+}
+
+.magnetic-btn-inner {
+  display: inline-block;
+  position: relative;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magnetic-btn {
+    transform: none !important;
+  }
+}
+
+/* Tilt 3D Cards */
+.tilt-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.tilt-inner {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt-content-front {
+  transform: translateZ(30px);
+}
+
+.tilt-content-back {
+  transform: translateZ(10px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-inner {
+    transform: none !important;
+  }
+}
+
+/* Text Reveal on Scroll */
+.reveal-text {
+  line-height: 1.7;
+}
+
+.reveal-word-wrapper {
+  display: inline-block;
+}
+
+.reveal-word {
+  display: inline-block;
+  transition: color 0.2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-word {
+    opacity: 1 !important;
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import { TiltCard } from "./TiltCard";
 import type { Project } from "@/lib/projects";
 
 type ProjectCardProps = {
@@ -19,7 +20,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      whileHover="hover"
       className="group relative overflow-hidden border-b border-[--color-border] p-6 md:p-8"
       style={
         project.featured
@@ -29,16 +29,18 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     >
       {/* Sliding pixel fill on hover */}
       <motion.div
-        variants={{
-          hover: { scaleX: 1 },
-        }}
         initial={{ scaleX: 0 }}
+        whileHover={{ scaleX: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="absolute inset-0 -z-10 bg-bg-2"
         style={{ transformOrigin: "left" }}
       />
 
-      <Wrapper {...wrapperProps} className="block">
+      <TiltCard
+        href={project.href}
+        className="block"
+      >
+        <Wrapper {...wrapperProps} className="block">
         {/* Number & Category */}
         <div className="mb-3 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.1em] text-muted">
           <motion.span
@@ -98,6 +100,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           ))}
         </div>
       </Wrapper>
+      </TiltCard>
     </motion.div>
   );
 }
