@@ -24,9 +24,9 @@ export default function About() {
           >
             <p>
               Soy estudiante de <span className="text-accent">Ingeniería de Software</span> en
-              Compensar, con experiencia profesional construyendo aplicaciones
+              ultimos semestres con experiencia profesional real construyendo aplicaciones
               corporativas en SoftwareOne. Trabajé liderando una migración
-              Angular 12→16 en producción y desarrollando módulos completos
+              Angular 12 → 16 en producción y desarrollando módulos completos
               end-to-end con .NET y Angular.
             </p>
             <p>
@@ -37,7 +37,8 @@ export default function About() {
             </p>
             <p>
               Me interesa la arquitectura limpia, los productos bien diseñados,
-              y construir cosas que realmente resuelvan problemas.
+              y construir cosas que realmente resuelvan problemas
+              sin costar un ojo de la cara.
             </p>
 
             <div className="about-stats">

@@ -1,7 +1,7 @@
 export type Tech = {
   name: string;
   icon: string;
-  category?: "frontend" | "backend" | "database" | "devops";
+  category?: "frontend" | "backend" | "database" | "devops" | "automatization";
 };
 
 export const stack: Tech[] = [
@@ -20,4 +20,6 @@ export const stack: Tech[] = [
 
   { name: "Azure DevOps", icon: "☁", category: "devops" },
   { name: "Docker", icon: "⬢", category: "devops" },
+
+  { name: "N8N", icon: "⚙", category: "automatization" }
 ];

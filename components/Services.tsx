@@ -15,7 +15,7 @@ const services = [
     title: "Aplicaciones web a medida",
     description:
       "Sistemas completos para automatizar procesos: dashboards administrativos, plataformas B2B, MVPs con arquitectura escalable.",
-    price: "Desde $2.500.000 COP",
+    price: "Desde $650.000 COP",
     delivery: "4-8 semanas",
     tags: ["ASP.NET Core", "React / Angular", "Clean Architecture"],
   },
