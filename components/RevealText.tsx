@@ -14,7 +14,7 @@ export function RevealText({ children, className = '' }: RevealTextProps) {
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ['start 0.75', 'end 0.25'],
+    offset: ['start 0.9', 'end 0.1'],
   });
 
   const words = children.split(' ');
