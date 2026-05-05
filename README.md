@@ -1,6 +1,4 @@
-# Juan Cartagena — Developer Portfolio
-
-Portafolio personal de Juan Cartagena, desarrollador full-stack freelance en Bogotá, Colombia. Estética dark experimental con animaciones fluidas.
+# portfolio
 
 ## Stack técnico
 
@@ -47,37 +45,5 @@ portfolio/
 │   ├── projects.ts         # Data y tipos de proyectos
 │   └── stack.ts            # Data y tipos del stack técnico
 └── public/                 # Assets estáticos
-```
 
-## Editar proyectos
 
-Edita el archivo `lib/projects.ts` para agregar, modificar o eliminar proyectos. Cada proyecto tiene la siguiente estructura:
-
-```ts
-{
-  id: "mi-proyecto",
-  number: "01",
-  category: "SaaS / Web",
-  title: "Mi Proyecto",
-  description: "Descripción del proyecto.",
-  tags: [
-    { label: "Next.js", accent: true },
-    { label: "Supabase" },
-  ],
-  featured: true,   // opcional: borde accent a la izquierda
-  href: "https://...", // opcional: link externo
-}
-```
-
-## Deploy en Vercel
-
-**Via GitHub:**
-1. Push del repo a GitHub
-2. Importar el repo en [vercel.com/new](https://vercel.com/new)
-3. Deploy automático en cada push
-
-**Via CLI:**
-```bash
-npm i -g vercel
-vercel
-```
