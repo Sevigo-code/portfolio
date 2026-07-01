@@ -18,6 +18,7 @@ const silkscreen = Silkscreen({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://juancartagena.dev"),
   title: "Juan Cartagena — Full-stack Developer",
   description:
     "Desarrollador full-stack con experiencia en .NET, Angular y React. Especializado en arquitectura limpia, SaaS B2B y soluciones escalables. Bogotá, Colombia.",
@@ -77,3 +78,4 @@ export default function RootLayout({
     </html>
   );
 }
+

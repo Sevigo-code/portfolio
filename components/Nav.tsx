@@ -21,7 +21,7 @@ export default function Nav() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-40 border-b border-[--color-border] bg-[rgba(10,10,15,0.7)] backdrop-blur-xl"
+      className="fixed top-0 left-0 right-0 z-40 border-b border-border bg-[rgba(10,10,15,0.7)] backdrop-blur-xl"
     >
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 md:px-10">
         <motion.div
@@ -52,7 +52,7 @@ export default function Nav() {
           aria-label={open ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden flex h-9 w-9 flex-col items-center justify-center gap-[5px] border border-[--color-border]"
+          className="md:hidden flex h-9 w-9 flex-col items-center justify-center gap-[5px] border border-border"
         >
           <span
             className={`block h-[2px] w-4 bg-text transition-transform duration-200 ${
@@ -80,7 +80,7 @@ export default function Nav() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden absolute right-4 top-full mt-2 w-56 border border-[--color-border] bg-[rgba(10,10,15,0.95)] backdrop-blur-xl shadow-[4px_4px_0_0_rgba(200,242,97,0.15)]"
+            className="md:hidden absolute right-4 top-full mt-2 w-56 border border-border bg-[rgba(10,10,15,0.95)] backdrop-blur-xl shadow-[4px_4px_0_0_rgba(200,242,97,0.15)]"
           >
             <ul className="flex flex-col py-2">
               {links.map((link) => (
@@ -101,3 +101,4 @@ export default function Nav() {
     </motion.nav>
   );
 }
+

@@ -21,22 +21,22 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0 }}
             className="currently-panel"
           >
-            <div className="label">// CURRENTLY</div>
+            <div className="label">// AHORA</div>
             <div className="status-box">
               <div className="status-item active">
                 <span className="dot active" />
-                <span>Building SaaS restaurantero</span>
+                <span>Desarrollando SaaS restaurantero</span>
               </div>
               <div className="status-item">
                 <span className="dot" />
-                <span>Open to freelance</span>
+                <span>Abierto a freelance</span>
               </div>
               <div className="status-item">
                 <span className="dot" />
-                <span>English C1 · Remote ready</span>
+                <span>Inglés C1 · Listo para remoto</span>
               </div>
             </div>
-            <div className="timezone">GMT-5 · ONLINE</div>
+            <div className="timezone">GMT-5 · EN LÍNEA</div>
           </motion.div>
 
           {/* Eyebrow */}
@@ -66,7 +66,7 @@ export default function Hero() {
           <motion.h1
             {...fadeUp}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="font-display text-6xl font-800 leading-[0.95] tracking-[-0.04em] md:text-8xl"
+            className="font-display text-6xl font-extrabold leading-[0.95] tracking-[-0.04em] md:text-8xl"
           >
             <motion.span
               className="inline-block"
@@ -120,3 +120,4 @@ export default function Hero() {
     </section>
   );
 }
+

@@ -24,7 +24,7 @@ export default function About() {
             className="about-text"
           >
             <RevealText className="about-paragraph">
-              Soy estudiante de Ingeniería de Software en ultimos semestres con experiencia profesional real construyendo aplicaciones corporativas en SoftwareOne. Trabajé liderando una migración Angular 12 → 16 en producción y desarrollando módulos completos end-to-end con .NET y Angular.
+              Soy estudiante de Ingeniería de Software en mis últimos semestres, con experiencia profesional construyendo aplicaciones corporativas en SoftwareOne. Trabajé liderando una migración Angular 12 → 16 en producción y desarrollando módulos completos end-to-end con .NET y Angular.
             </RevealText>
             <RevealText className="about-paragraph">
               Actualmente desarrollo de forma independiente un SaaS B2B para el sector restaurantero, mientras colaboro con negocios locales en Bogotá ayudándoles a construir su presencia digital.
@@ -35,15 +35,15 @@ export default function About() {
 
             <div className="about-stats">
               <div className="stat">
-                <div className="stat-number">7+</div>
-                <div className="stat-label">Meses experiencia corporativa</div>
+                <div className="stat-number">4+</div>
+                <div className="stat-label">Años de experiencia</div>
               </div>
               <div className="stat">
                 <div className="stat-number">C1</div>
                 <div className="stat-label">Inglés avanzado</div>
               </div>
               <div className="stat">
-                <div className="stat-number">3+</div>
+                <div className="stat-number">10+</div>
                 <div className="stat-label">Proyectos en producción</div>
               </div>
             </div>
@@ -53,3 +53,4 @@ export default function About() {
     </section>
   );
 }
+

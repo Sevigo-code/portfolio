@@ -1,9 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "motion/react";
+import { useEffect, useRef, useCallback } from "react";
+import { motion, useMotionValue, useSpring, useReducedMotion, type MotionValue } from "motion/react";
 import { useMousePositionRef } from "@/hooks/useMousePosition";
 import { REPULSION_CONFIG } from "@/lib/interactionConfig";
+
+type SpriteHandle = {
+  el: HTMLElement | null;
+  pushX: MotionValue<number>;
+  pushY: MotionValue<number>;
+};
 
 /**
  * Decorative pixel-art sprites organized into 3 visual layers
@@ -173,12 +179,15 @@ function pickSize(layer: SpriteLayer, seed: number) {
 function Sprite({
   cfg,
   index,
-  mouseRef,
+  register,
+  unregister,
 }: {
   cfg: SpriteConfig;
   index: number;
-  mouseRef: React.RefObject<{ x: number; y: number }>;
+  register: (i: number, h: SpriteHandle) => void;
+  unregister: (i: number) => void;
 }) {
+  const reduce = useReducedMotion();
   const wrapperRef = useRef<HTMLDivElement>(null);
   const floatRef = useRef<HTMLDivElement>(null);
   const { opacity, duration } = LAYER_STYLE[cfg.layer];
@@ -200,44 +209,12 @@ function Sprite({
     mass: REPULSION_CONFIG.springMass,
   });
 
+  // Register this sprite's float element + push values with the parent,
+  // which runs a single shared rAF loop for cursor repulsion.
   useEffect(() => {
-    // Skip the effect entirely on touch-only devices — no cursor to react to.
-    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) {
-      return;
-    }
-
-    let raf = 0;
-    const tick = () => {
-      const wrapper = wrapperRef.current;
-      const inner = floatRef.current;
-      if (wrapper && inner) {
-        // Measure the inner (float) element so our anchor reflects the
-        // sprite's drifted position but ignores our own spring transform.
-        const rect = inner.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
-
-        const { x: mx, y: my } = mouseRef.current;
-        const dx = cx - mx;
-        const dy = cy - my;
-        const dist = Math.hypot(dx, dy);
-
-        if (dist < REPULSION_CONFIG.radius && dist > 0) {
-          const force =
-            (1 - dist / REPULSION_CONFIG.radius) * REPULSION_CONFIG.maxDisplacement;
-          const angle = Math.atan2(dy, dx);
-          pushX.set(Math.cos(angle) * force);
-          pushY.set(Math.sin(angle) * force);
-        } else {
-          pushX.set(0);
-          pushY.set(0);
-        }
-      }
-      raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [mouseRef, pushX, pushY]);
+    register(index, { el: floatRef.current, pushX, pushY });
+    return () => unregister(index);
+  }, [register, unregister, index, pushX, pushY]);
 
   return (
     <motion.div
@@ -253,17 +230,20 @@ function Sprite({
     >
       <motion.div
         ref={floatRef}
-        animate={{
-          y: [0, -14, 0, 10, 0],
-          x: [0, 6, 0, -6, 0],
-          rotate: [0, 6, 0, -6, 0],
-        }}
-        transition={{
-          duration,
-          delay,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        animate={
+          reduce
+            ? undefined
+            : {
+                y: [0, -14, 0, 10, 0],
+                x: [0, 6, 0, -6, 0],
+                rotate: [0, 6, 0, -6, 0],
+              }
+        }
+        transition={
+          reduce
+            ? undefined
+            : { duration, delay, repeat: Infinity, ease: "easeInOut" }
+        }
       >
         <Component size={size} color={cfg.color} />
       </motion.div>
@@ -276,12 +256,66 @@ export default function PixelSpriteLayer({
 }: {
   sprites?: SpriteConfig[];
 }) {
+  const reduce = useReducedMotion();
   const mouseRef = useMousePositionRef();
+  const handlesRef = useRef<Map<number, SpriteHandle>>(new Map());
+
+  const register = useCallback((i: number, h: SpriteHandle) => {
+    handlesRef.current.set(i, h);
+  }, []);
+  const unregister = useCallback((i: number) => {
+    handlesRef.current.delete(i);
+  }, []);
+
+  // Single shared rAF loop drives repulsion for every sprite — one loop and
+  // one batch of layout reads per frame instead of one loop per sprite.
+  useEffect(() => {
+    if (reduce) return;
+    if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) {
+      return;
+    }
+
+    const radius = REPULSION_CONFIG.radius;
+    let raf = 0;
+    const tick = () => {
+      const { x: mx, y: my } = mouseRef.current;
+      handlesRef.current.forEach(({ el, pushX, pushY }) => {
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+        const dx = cx - mx;
+        const dy = cy - my;
+        const dist = Math.hypot(dx, dy);
+
+        if (dist < radius && dist > 0) {
+          const force = (1 - dist / radius) * REPULSION_CONFIG.maxDisplacement;
+          const angle = Math.atan2(dy, dx);
+          pushX.set(Math.cos(angle) * force);
+          pushY.set(Math.sin(angle) * force);
+        } else {
+          pushX.set(0);
+          pushY.set(0);
+        }
+      });
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [mouseRef, reduce]);
+
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
       {sprites.map((cfg, i) => (
-        <Sprite key={`${cfg.type}-${i}`} cfg={cfg} index={i} mouseRef={mouseRef} />
+        <Sprite
+          key={`${cfg.type}-${i}`}
+          cfg={cfg}
+          index={i}
+          register={register}
+          unregister={unregister}
+        />
       ))}
     </div>
   );
 }
+

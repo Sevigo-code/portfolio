@@ -38,7 +38,7 @@ export default function Stack() {
             hidden: {},
             show: { transition: { staggerChildren: 0.04 } },
           }}
-          className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] border-t border-l border-[--color-border]"
+          className="grid grid-cols-[repeat(auto-fill,minmax(110px,1fr))] border-t border-l border-border"
         >
           {stack.map((tech) => (
             <motion.div
@@ -53,7 +53,7 @@ export default function Stack() {
                 y: -4,
                 boxShadow: "0 0 0 1px var(--color-accent)",
               }}
-              className="flex flex-col items-center justify-center gap-2 border-r border-b border-[--color-border] px-4 py-8"
+              className="flex flex-col items-center justify-center gap-2 border-r border-b border-border px-4 py-8"
             >
               <motion.span
                 className="text-2xl"
@@ -70,3 +70,4 @@ export default function Stack() {
     </section>
   );
 }
+

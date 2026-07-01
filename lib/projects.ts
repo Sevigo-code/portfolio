@@ -21,7 +21,7 @@ export const projects: Project[] = [
     category: "SaaS B2B / Restaurantes",
     title: "Sistema de gestión para restaurantes",
     description:
-      "SaaS administrativo para pequeños restaurantes: gestión de inventario de ingredientes, cálculo de costos de recetas, análisis de rentabilidad y registro de preparaciones. Arquitectura limpia escalable, validado con cliente real, en camino a MVP comercial.",
+      "SaaS administrativo para pequeños restaurantes: gestión de inventario de ingredientes, cálculo de costos de recetas, análisis de rentabilidad y registro de preparaciones. Arquitectura limpia escalable, validado con un cliente, en camino a MVP comercial.",
     tags: [
       { label: "ASP.NET Core 8", accent: true },
       { label: "React 18", accent: true },
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     category: "Freelance / Servicios digitales",
     title: "Presencia digital local",
     description:
-      "Estrategia de visibilidad para negocios locales en Bogotá: Google Business Profile, WhatsApp Business y modelo de cobro por resultados. Clientes: tattoo artist y barbería.",
+      "Estrategia de visibilidad para negocios locales en Bogotá: Google Business Profile, WhatsApp Business y modelo de cobro por resultados. Clientes: un tatuador y una barbería.",
     tags: [
       { label: "Google Maps", accent: true },
       { label: "WhatsApp Business", accent: true },
@@ -64,3 +64,4 @@ export const projects: Project[] = [
     ],
   },
 ];
+

@@ -16,6 +16,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   background-color: #06060a;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -170,21 +171,21 @@ body::after {
 
 /* Ghost text effect */
 .text-ghost {
-  -webkit-text-stroke: 2px rgba(200, 242, 97, 0.55);
+  -webkit-text-stroke: 2px rgba(200, 242, 97, 0.9);
   color: transparent;
 }
 
 /* Tagline typography */
 .tagline {
   font-size: clamp(0.9rem, 2vw, 1.1rem);
-  color: #888899;
+  color: var(--color-muted);
   line-height: 1.7;
   max-width: 520px;
   font-weight: 400;
 }
 
 .tagline .highlight {
-  color: #f0f0e8;
+  color: var(--color-text);
   font-weight: 700;
 }
 
@@ -201,7 +202,7 @@ body::after {
 .currently-panel .label {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: #888899;
+  color: var(--color-muted);
   letter-spacing: 0.15em;
 }
 
@@ -220,27 +221,27 @@ body::after {
 .currently-panel .status-item {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: #888899;
+  color: var(--color-muted);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .currently-panel .status-item.active {
-  color: #c8f261;
+  color: var(--color-accent);
 }
 
 .currently-panel .dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #888899;
+  background: var(--color-muted);
   display: inline-block;
 }
 
 .currently-panel .dot.active {
-  background: #c8f261;
-  box-shadow: 0 0 6px #c8f261;
+  background: var(--color-accent);
+  box-shadow: 0 0 6px var(--color-accent);
   animation: currently-pulse 2s ease-in-out infinite;
 }
 
@@ -252,7 +253,7 @@ body::after {
 .currently-panel .timezone {
   font-family: var(--font-mono);
   font-size: 10px;
-  color: #888899;
+  color: var(--color-muted);
   letter-spacing: 0.1em;
   text-align: left;
   margin-top: 4px;
@@ -601,7 +602,7 @@ body::after {
 
 .magnetic-btn-primary {
   background: var(--color-accent);
-  color: #0a0a0f;
+  color: var(--color-bg);
   border-color: var(--color-accent);
 }
 
@@ -671,3 +672,42 @@ body::after {
     opacity: 1 !important;
   }
 }
+
+/* Global reduced-motion: silence ambient/infinite animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .pixel-stars,
+  .pixel-sprite,
+  .glitch,
+  .marquee-track,
+  .pixel-pulse,
+  .cursor-blink::after,
+  .currently-panel .dot.active {
+    animation: none !important;
+  }
+}
+
+/* High-contrast / forced-colors: restore the system cursor and give the
+   ghost name a solid, legible fill instead of a transparent outline. */
+@media (forced-colors: active) {
+  *,
+  a,
+  button,
+  [role='button'] {
+    cursor: auto;
+  }
+
+  .text-ghost {
+    -webkit-text-stroke: 0;
+    color: CanvasText;
+  }
+}
+

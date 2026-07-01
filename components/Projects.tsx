@@ -31,7 +31,7 @@ export default function Projects() {
         </motion.h2>
 
         {/* Project Cards */}
-        <div className="border-t border-[--color-border]">
+        <div className="border-t border-border">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
@@ -40,3 +40,4 @@ export default function Projects() {
     </section>
   );
 }
+

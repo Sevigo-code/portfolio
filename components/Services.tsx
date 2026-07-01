@@ -7,7 +7,6 @@ const services = [
     title: "Landing pages y sitios web",
     description:
       "Páginas web profesionales para negocios locales y emprendedores. Diseño personalizado, código desde cero, listas para Google.",
-    price: "Desde $500.000 COP",
     delivery: "1-2 semanas",
     tags: ["Next.js", "React", "Diseño custom"],
   },
@@ -15,7 +14,6 @@ const services = [
     title: "Aplicaciones web a medida",
     description:
       "Sistemas completos para automatizar procesos: dashboards administrativos, plataformas B2B, MVPs con arquitectura escalable.",
-    price: "Desde $650.000 COP",
     delivery: "4-8 semanas",
     tags: ["ASP.NET Core", "React / Angular", "Clean Architecture"],
   },
@@ -23,7 +21,6 @@ const services = [
     title: "Presencia digital local",
     description:
       "Google Business Profile + WhatsApp Business + optimización local para que tu negocio aparezca cuando tus clientes te buscan.",
-    price: "Desde $300.000 COP",
     delivery: "3-5 días",
     tags: ["Google Maps", "WhatsApp Business", "SEO local"],
   },
@@ -50,8 +47,7 @@ export default function Services() {
               <p className="service-description">{service.description}</p>
 
               <div className="service-meta">
-                <div className="service-price">{service.price}</div>
-                <div className="service-delivery">· {service.delivery}</div>
+                <div className="service-delivery">Entrega en {service.delivery}</div>
               </div>
 
               <div className="service-tags">
@@ -73,3 +69,4 @@ export default function Services() {
     </section>
   );
 }
+

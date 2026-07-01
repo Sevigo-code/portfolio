@@ -1,17 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 export default function RotatingBadge() {
   const text = "BOGOTÁ ✦ COLOMBIA ✦ FREELANCE ✦ DEV ✦ ";
+  const reduce = useReducedMotion();
+
+  const spin = reduce
+    ? {}
+    : { animate: { rotate: 360 }, transition: { duration: 20, ease: "linear" as const, repeat: Infinity } };
 
   return (
     <div className="relative h-44 w-44 flex-shrink-0">
       {/* Outer rotating text */}
       <motion.svg
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+        {...spin}
         viewBox="0 0 200 200"
         className="h-full w-full"
       >
@@ -31,8 +35,7 @@ export default function RotatingBadge() {
 
       {/* Inner rotating image (same direction as outer) */}
       <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, ease: "linear", repeat: Infinity }}
+        {...spin}
         className="absolute inset-0 m-auto h-32 w-32 overflow-hidden rounded-full"
       >
         <Image
@@ -48,3 +51,4 @@ export default function RotatingBadge() {
     </div>
   );
 }
+

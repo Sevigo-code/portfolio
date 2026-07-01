@@ -30,7 +30,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-6 font-display text-4xl font-800 leading-tight tracking-[-0.04em] md:text-6xl lg:text-7xl"
+          className="mb-6 font-display text-4xl font-extrabold leading-tight tracking-[-0.04em] md:text-6xl lg:text-7xl"
         >
           ¿Tienes un proyecto?{" "}
           <span
@@ -76,7 +76,7 @@ export default function Contact() {
               boxShadow: "4px 4px 0 0 var(--color-accent-2)",
             }}
             whileTap={{ y: 0, boxShadow: "0px 0px 0 0 var(--color-accent-2)" }}
-            className="inline-flex items-center gap-2 border border-[--color-border] px-5 py-3 font-mono text-xs uppercase tracking-[0.1em] text-muted"
+            className="inline-flex items-center gap-2 border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.1em] text-muted"
           >
             <span>↓</span>
             <span>Descargar CV</span>
@@ -108,7 +108,7 @@ export default function Contact() {
                 boxShadow: "4px 4px 0 0 var(--color-accent-2)",
               }}
               whileTap={{ y: 0, boxShadow: "0px 0px 0 0 var(--color-accent-2)" }}
-              className="flex items-center gap-2 border border-[--color-border] px-5 py-3 font-mono text-sm text-muted"
+              className="flex items-center gap-2 border border-border px-5 py-3 font-mono text-sm text-muted"
             >
               <motion.span
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -124,3 +124,4 @@ export default function Contact() {
     </section>
   );
 }
+

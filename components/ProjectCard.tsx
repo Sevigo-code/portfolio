@@ -9,35 +9,28 @@ type ProjectCardProps = {
 };
 
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const Wrapper = project.href ? "a" : "div";
-  const wrapperProps = project.href
-    ? { href: project.href, target: "_blank" as const, rel: "noopener noreferrer" }
-    : {};
-
   return (
     <motion.div
       initial={{ opacity: 0, x: -32 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="group relative overflow-hidden border-b border-[--color-border] p-6 md:p-8"
+      className="group relative overflow-hidden border-b border-border p-6 md:p-8"
       style={
         project.featured
           ? { borderLeft: "3px solid var(--color-accent)" }
           : undefined
       }
     >
-      {/* Sliding pixel fill on hover */}
-      <motion.div
-        initial={{ scaleX: 0 }}
-        whileHover={{ scaleX: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="absolute inset-0 -z-10 bg-bg-2"
-        style={{ transformOrigin: "left" }}
+      {/* Sliding pixel fill on hover — decorative, must never catch clicks */}
+      <div
+        className="pointer-events-none absolute inset-0 -z-10 origin-left scale-x-0 bg-bg-2 transition-transform duration-500 ease-out group-hover:scale-x-100"
       />
 
-      <TiltCard className="block">
-        <Wrapper {...wrapperProps} className="block">
+      {/* href lives on TiltCard so the anchor wraps the 3D content; clicks
+          anywhere bubble up to the link instead of being swallowed by the
+          tilt wrapper. */}
+      <TiltCard href={project.href} className="block">
         {/* Number & Category */}
         <div className="mb-3 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.1em] text-muted">
           <motion.span
@@ -89,15 +82,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               className={`font-mono text-[11px] uppercase tracking-[0.1em] px-3 py-1 border ${
                 tag.accent
                   ? "border-accent/30 text-accent"
-                  : "border-[--color-border] text-muted"
+                  : "border-border text-muted"
               }`}
             >
               {tag.label}
             </motion.span>
           ))}
         </div>
-      </Wrapper>
       </TiltCard>
     </motion.div>
   );
 }
+
