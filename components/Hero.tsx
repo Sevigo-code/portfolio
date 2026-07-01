@@ -3,13 +3,16 @@
 import { motion } from "motion/react";
 import RotatingBadge from "./RotatingBadge";
 import { MagneticButton } from "./MagneticButton";
+import type { Dict } from "@/lib/i18n";
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
 };
 
-export default function Hero() {
+type HeroProps = { t: Dict["hero"] };
+
+export default function Hero({ t }: HeroProps) {
   return (
     <section className="relative z-10 flex min-h-screen items-center overflow-visible px-6 pt-24 md:px-10">
       <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-12">
@@ -21,22 +24,16 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0 }}
             className="currently-panel"
           >
-            <div className="label">// AHORA</div>
+            <div className="label">{t.nowLabel}</div>
             <div className="status-box">
-              <div className="status-item active">
-                <span className="dot active" />
-                <span>Desarrollando SaaS restaurantero</span>
-              </div>
-              <div className="status-item">
-                <span className="dot" />
-                <span>Abierto a freelance</span>
-              </div>
-              <div className="status-item">
-                <span className="dot" />
-                <span>Inglés C1 · Listo para remoto</span>
-              </div>
+              {t.nowItems.map((item, i) => (
+                <div key={item} className={`status-item${i === 0 ? " active" : ""}`}>
+                  <span className={`dot${i === 0 ? " active" : ""}`} />
+                  <span>{item}</span>
+                </div>
+              ))}
             </div>
-            <div className="timezone">GMT-5 · EN LÍNEA</div>
+            <div className="timezone">{t.timezone}</div>
           </motion.div>
 
           {/* Eyebrow */}
@@ -58,7 +55,7 @@ export default function Hero() {
                 animate={{ opacity: [1, 0.2, 1] }}
                 transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
               />
-              Disponible
+              {t.available}
             </span>
           </motion.div>
 
@@ -85,11 +82,15 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="tagline mt-8"
           >
-            <span className="highlight">Desarrollador full-stack</span> con experiencia
-            en .NET, Angular y React construyendo soluciones escalables con
-            <span className="highlight"> arquitectura limpia</span>. Actualmente
-            desarrollando un <span className="highlight">SaaS B2B</span> para el sector
-            restaurantero.
+            {t.tagline.map((seg, i) =>
+              seg.hl ? (
+                <span key={i} className="highlight">
+                  {seg.t}
+                </span>
+              ) : (
+                <span key={i}>{seg.t}</span>
+              )
+            )}
           </motion.p>
 
           {/* Buttons */}
@@ -99,10 +100,10 @@ export default function Hero() {
             className="mt-10 flex items-center gap-4"
           >
             <MagneticButton href="#proyectos" variant="primary">
-              Ver proyectos →
+              {t.ctaProjects}
             </MagneticButton>
             <MagneticButton href="#contacto" variant="ghost">
-              Hablemos
+              {t.ctaContact}
             </MagneticButton>
           </motion.div>
         </div>
@@ -120,4 +121,3 @@ export default function Hero() {
     </section>
   );
 }
-

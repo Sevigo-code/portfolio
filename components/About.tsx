@@ -2,17 +2,20 @@
 
 import { motion } from "motion/react";
 import { RevealText } from "./RevealText";
+import type { Dict } from "@/lib/i18n";
 
-export default function About() {
+type AboutProps = { t: Dict["about"] };
+
+export default function About({ t }: AboutProps) {
   return (
     <section id="sobre-mi" className="relative z-10 px-6 py-24 md:px-10">
       <div className="mx-auto max-w-[900px]">
         <div className="about-grid">
           <div>
-            <p className="section-label">Sobre mí</p>
+            <p className="section-label">{t.label}</p>
             <h2 className="section-heading">
-              Developer que construye <br />
-              <span className="heading-accent">productos reales</span>.
+              {t.headingPre} <br />
+              <span className="heading-accent">{t.headingAccent}</span>.
             </h2>
           </div>
 
@@ -23,29 +26,19 @@ export default function About() {
             transition={{ duration: 0.6 }}
             className="about-text"
           >
-            <RevealText className="about-paragraph">
-              Soy estudiante de Ingeniería de Software en mis últimos semestres, con experiencia profesional construyendo aplicaciones corporativas en SoftwareOne. Trabajé liderando una migración Angular 12 → 16 en producción y desarrollando módulos completos end-to-end con .NET y Angular.
-            </RevealText>
-            <RevealText className="about-paragraph">
-              Actualmente desarrollo de forma independiente un SaaS B2B para el sector restaurantero, mientras colaboro con negocios locales en Bogotá ayudándoles a construir su presencia digital.
-            </RevealText>
-            <RevealText className="about-paragraph">
-              Me interesa la arquitectura limpia, los productos bien diseñados, y construir cosas que realmente resuelvan problemas sin costar un ojo de la cara.
-            </RevealText>
+            {t.paragraphs.map((p) => (
+              <RevealText key={p.slice(0, 24)} className="about-paragraph">
+                {p}
+              </RevealText>
+            ))}
 
             <div className="about-stats">
-              <div className="stat">
-                <div className="stat-number">4+</div>
-                <div className="stat-label">Años de experiencia</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">C1</div>
-                <div className="stat-label">Inglés avanzado</div>
-              </div>
-              <div className="stat">
-                <div className="stat-number">10+</div>
-                <div className="stat-label">Proyectos en producción</div>
-              </div>
+              {t.stats.map((stat) => (
+                <div key={stat.label} className="stat">
+                  <div className="stat-number">{stat.number}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>
@@ -53,4 +46,3 @@ export default function About() {
     </section>
   );
 }
-

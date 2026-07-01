@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import type { Dict } from "@/lib/i18n";
 
 const contactLinks = [
   { icon: "✉", label: "Email", href: "mailto:juancamilocartagena7@gmail.com" },
@@ -9,7 +10,9 @@ const contactLinks = [
   { icon: "◉", label: "WhatsApp", href: "https://wa.me/573155401095" },
 ];
 
-export default function Contact() {
+type ContactProps = { t: Dict["contact"] };
+
+export default function Contact({ t }: ContactProps) {
   return (
     <section id="contacto" className="relative z-10 px-6 py-32 md:px-10">
       <div className="mx-auto max-w-6xl">
@@ -21,7 +24,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="mb-4 block font-mono text-xs uppercase tracking-[0.1em] text-accent"
         >
-          Contacto
+          {t.label}
         </motion.span>
 
         {/* Heading */}
@@ -32,7 +35,7 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-6 font-display text-4xl font-extrabold leading-tight tracking-[-0.04em] md:text-6xl lg:text-7xl"
         >
-          ¿Tienes un proyecto?{" "}
+          {t.headingPre}{" "}
           <span
             className="text-text"
             style={{
@@ -42,7 +45,7 @@ export default function Contact() {
               textUnderlineOffset: "6px",
             }}
           >
-            Hablemos.
+            {t.headingAccent}
           </span>
         </motion.h2>
 
@@ -54,8 +57,7 @@ export default function Contact() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mb-8 max-w-lg font-mono text-sm leading-relaxed text-muted"
         >
-          Estoy disponible para freelance, colaboraciones y proyectos
-          interesantes. Cuéntame tu idea.
+          {t.description}
         </motion.p>
 
         {/* CV download */}
@@ -79,7 +81,7 @@ export default function Contact() {
             className="inline-flex items-center gap-2 border border-border px-5 py-3 font-mono text-xs uppercase tracking-[0.1em] text-muted"
           >
             <span>↓</span>
-            <span>Descargar CV</span>
+            <span>{t.downloadCv}</span>
           </motion.a>
         </motion.div>
 
@@ -124,4 +126,3 @@ export default function Contact() {
     </section>
   );
 }
-

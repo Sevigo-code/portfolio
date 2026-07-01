@@ -21,11 +21,15 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://juancartagena.dev"),
   title: "Juan Cartagena — Full-stack Developer",
   description:
-    "Desarrollador full-stack con experiencia en .NET, Angular y React. Especializado en arquitectura limpia, SaaS B2B y soluciones escalables. Bogotá, Colombia.",
+    "Desarrollador full-stack con experiencia en .NET, Angular y React. Automatización de procesos con n8n e IA, arquitectura limpia y SaaS B2B. Bogotá, Colombia.",
+  alternates: {
+    canonical: "/",
+    languages: { es: "/", en: "/en" },
+  },
   openGraph: {
     title: "Juan Cartagena — Full-stack Developer",
     description:
-      "Full-stack dev especializado en .NET, React y arquitectura limpia. Disponible para proyectos freelance.",
+      "Full-stack dev especializado en .NET, React y automatización con n8n e IA. Disponible para proyectos freelance.",
     url: "https://juancartagena.dev",
     siteName: "Juan Cartagena",
     locale: "es_CO",
@@ -35,6 +39,35 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Juan Cartagena — Full-stack Developer",
   },
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Juan Cartagena",
+  url: "https://juancartagena.dev",
+  jobTitle: "Full-stack Developer",
+  knowsAbout: [
+    ".NET",
+    "C#",
+    "Angular",
+    "React",
+    "Next.js",
+    "n8n",
+    "Process Automation",
+    "AI Agents",
+    "SQL Server",
+  ],
+  knowsLanguage: ["es", "en"],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Bogotá",
+    addressCountry: "CO",
+  },
+  sameAs: [
+    "https://www.linkedin.com/in/juan-cartagenam/",
+    "https://github.com/Sevigo-code",
+  ],
 };
 
 function NoiseOverlay() {
@@ -70,6 +103,10 @@ export default function RootLayout({
       className={`${syne.variable} ${silkscreen.variable}`}
     >
       <body className="min-h-screen text-text">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <div className="bg" aria-hidden />
         <PixelSpriteLayer />
         <NoiseOverlay />
@@ -78,4 +115,3 @@ export default function RootLayout({
     </html>
   );
 }
-

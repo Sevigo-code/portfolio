@@ -2,8 +2,11 @@
 
 import { motion } from "motion/react";
 import { stack } from "@/lib/stack";
+import type { Dict } from "@/lib/i18n";
 
-export default function Stack() {
+type StackProps = { t: Dict["stack"] };
+
+export default function Stack({ t }: StackProps) {
   return (
     <section id="stack" className="relative z-10 px-6 py-24 md:px-10">
       <div className="mx-auto max-w-6xl">
@@ -15,7 +18,7 @@ export default function Stack() {
           transition={{ duration: 0.5 }}
           className="mb-4 block font-mono text-xs uppercase tracking-[0.1em] text-accent"
         >
-          Tecnologías
+          {t.label}
         </motion.span>
 
         {/* Heading */}
@@ -26,7 +29,7 @@ export default function Stack() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="cursor-blink mb-12 font-display text-4xl font-bold tracking-[-0.04em] md:text-5xl"
         >
-          Mi stack
+          {t.heading}
         </motion.h2>
 
         {/* Grid */}
@@ -70,4 +73,3 @@ export default function Stack() {
     </section>
   );
 }
-

@@ -5,5 +5,5 @@ export const size = OG_SIZE;
 export const contentType = "image/png";
 
 export default function OpengraphImage() {
-  return buildOgImage("es");
+  return buildOgImage("en");
 }

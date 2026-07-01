@@ -1,69 +1,81 @@
 "use client";
 
 import { motion } from "motion/react";
+import type { Dict, Seg } from "@/lib/i18n";
 
-export default function Experience() {
+type ExperienceProps = { t: Dict["experience"] };
+
+function Bullet({ segs }: { segs: Seg[] }) {
+  return (
+    <li>
+      {segs.map((seg, i) =>
+        seg.hl ? (
+          <span key={i} className="bullet-highlight">
+            {seg.t}
+          </span>
+        ) : (
+          <span key={i}>{seg.t}</span>
+        )
+      )}
+    </li>
+  );
+}
+
+export default function Experience({ t }: ExperienceProps) {
   return (
     <section id="experiencia" className="relative z-10 px-6 py-32 md:px-10">
       <div className="mx-auto max-w-[900px]">
-        <p className="section-label">Experiencia profesional</p>
-        <h2 className="section-heading">Donde he trabajado</h2>
+        <p className="section-label">{t.label}</p>
+        <h2 className="section-heading">{t.heading}</h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="mt-12"
-        >
-          <div className="experience-card">
-            <div className="exp-header">
-              <div className="exp-title-block">
-                <h3 className="exp-role">Desarrollador de Software</h3>
-                <p className="exp-company">SoftwareOne · Bogotá, Colombia</p>
+        <div className="mt-12 flex flex-col gap-8">
+          {t.jobs.map((job, jobIndex) => (
+            <motion.div
+              key={job.company + job.period}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: jobIndex * 0.1 }}
+            >
+              <div className="experience-card">
+                <div className="exp-header">
+                  <div className="exp-title-block">
+                    <h3 className="exp-role">{job.role}</h3>
+                    <p className="exp-company">{job.company}</p>
+                  </div>
+                  <span className="exp-period">{job.period}</span>
+                </div>
+
+                <ul className="exp-bullets">
+                  {job.bullets.map((segs, i) => (
+                    <Bullet key={i} segs={segs} />
+                  ))}
+                </ul>
+
+                <div className="exp-tags">
+                  {job.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {job.linkedIn && (
+                  <div className="exp-footer">
+                    <a
+                      href="https://www.linkedin.com/in/juan-cartagenam/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="exp-link"
+                    >
+                      {t.linkedInLabel}
+                    </a>
+                  </div>
+                )}
               </div>
-              <span className="exp-period">Mar 2025 — Sep 2025</span>
-            </div>
-
-            <ul className="exp-bullets">
-              <li>
-                Lideré la migración del aplicativo core de
-                <span className="bullet-highlight"> Angular 12 a 16</span>,
-                adoptando standalone components y refactorizando el back-end
-                en .NET/C#.
-              </li>
-              <li>
-                Desarrollé un módulo transversal (back-end + front-end) con
-                filtros avanzados y mejoras de UX que redujeron la fricción
-                de navegación para usuarios finales.
-              </li>
-              <li>
-                Implementé pruebas unitarias aumentando la cobertura y
-                facilitando la mantenibilidad del sistema a largo plazo.
-              </li>
-            </ul>
-
-            <div className="exp-tags">
-              <span className="tag">C#</span>
-              <span className="tag">.NET</span>
-              <span className="tag">Angular</span>
-              <span className="tag">SQL Server</span>
-              <span className="tag">Azure DevOps</span>
-              <span className="tag">Git</span>
-            </div>
-
-            <div className="exp-footer">
-              <a
-                href="https://www.linkedin.com/in/juan-cartagenam/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="exp-link"
-              >
-                Ver perfil completo en LinkedIn ↗
-              </a>
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

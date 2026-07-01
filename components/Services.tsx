@@ -1,40 +1,19 @@
 "use client";
 
 import { motion } from "motion/react";
+import type { Dict } from "@/lib/i18n";
 
-const services = [
-  {
-    title: "Landing pages y sitios web",
-    description:
-      "Páginas web profesionales para negocios locales y emprendedores. Diseño personalizado, código desde cero, listas para Google.",
-    delivery: "1-2 semanas",
-    tags: ["Next.js", "React", "Diseño custom"],
-  },
-  {
-    title: "Aplicaciones web a medida",
-    description:
-      "Sistemas completos para automatizar procesos: dashboards administrativos, plataformas B2B, MVPs con arquitectura escalable.",
-    delivery: "4-8 semanas",
-    tags: ["ASP.NET Core", "React / Angular", "Clean Architecture"],
-  },
-  {
-    title: "Presencia digital local",
-    description:
-      "Google Business Profile + WhatsApp Business + optimización local para que tu negocio aparezca cuando tus clientes te buscan.",
-    delivery: "3-5 días",
-    tags: ["Google Maps", "WhatsApp Business", "SEO local"],
-  },
-];
+type ServicesProps = { t: Dict["services"] };
 
-export default function Services() {
+export default function Services({ t }: ServicesProps) {
   return (
     <section id="servicios" className="relative z-10 px-6 py-32 md:px-10">
       <div className="mx-auto max-w-[900px]">
-        <p className="section-label">Servicios</p>
-        <h2 className="section-heading">Lo que ofrezco</h2>
+        <p className="section-label">{t.label}</p>
+        <h2 className="section-heading">{t.heading}</h2>
 
         <div className="services-grid">
-          {services.map((service, i) => (
+          {t.items.map((service, i) => (
             <motion.div
               key={service.title}
               initial={{ opacity: 0, y: 24 }}
@@ -47,7 +26,9 @@ export default function Services() {
               <p className="service-description">{service.description}</p>
 
               <div className="service-meta">
-                <div className="service-delivery">Entrega en {service.delivery}</div>
+                <div className="service-delivery">
+                  {t.deliveryPrefix} {service.delivery}
+                </div>
               </div>
 
               <div className="service-tags">
@@ -62,11 +43,10 @@ export default function Services() {
         </div>
 
         <p className="services-note">
-          ¿Proyecto diferente o necesitas algo más específico?
-          <a href="#contacto"> Cuéntame tu idea.</a>
+          {t.notePre}
+          <a href="#contacto"> {t.noteLink}</a>
         </p>
       </div>
     </section>
   );
 }
-
