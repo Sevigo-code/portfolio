@@ -155,7 +155,7 @@ const es: Dict = {
       {
         role: "Desarrollador de Software",
         company: "Telesentinel · Bogotá, Colombia",
-        period: "Oct 2025 — Presente",
+        period: "May 2026 — Presente",
         bullets: [
           [
             { t: "Diseño y opero flujos de automatización en " },
@@ -337,7 +337,7 @@ const en: Dict = {
       {
         role: "Software Developer",
         company: "Telesentinel · Bogotá, Colombia",
-        period: "Oct 2025 — Present",
+        period: "May 2026 — Present",
         bullets: [
           [
             { t: "I design and operate automation flows in " },
