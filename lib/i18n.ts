@@ -43,7 +43,7 @@ export type Dict = {
     label: string;
     headingPre: string;
     headingAccent: string;
-    paragraphs: string[];
+    paragraphs: Seg[][];
     stats: { number: string; label: string }[];
   };
   stack: { label: string; heading: string };
@@ -114,9 +114,31 @@ const es: Dict = {
     headingPre: "Desarrollador que construye",
     headingAccent: "productos reales",
     paragraphs: [
-      "Estudiante de Ingeniería de Software en los últimos semestres de la carrera. Actualmente trabajo en Telesentinel, donde diseño automatizaciones con n8n e IA para optimizar procesos operativos. Anteriormente, en SoftwareOne, lideré la migración de una aplicación corporativa de Angular 12 a 16 en producción y desarrollé módulos end-to-end con .NET y Angular.",
-      "En paralelo, desarrollo de manera independiente un SaaS B2B para la gestión de restaurantes y asesoro a negocios locales de Bogotá en la construcción de su presencia digital.",
-      "Me especializo en arquitectura limpia y automatización de procesos, con un enfoque en construir soluciones eficientes que generen valor real.",
+      [
+        { t: "Estudiante de Ingeniería de Software en los últimos semestres de la carrera. Actualmente trabajo en " },
+        { t: "Telesentinel", hl: true },
+        { t: ", donde diseño " },
+        { t: "automatizaciones con n8n e IA", hl: true },
+        { t: " para optimizar procesos operativos. Anteriormente, en " },
+        { t: "SoftwareOne", hl: true },
+        { t: ", lideré la migración de una aplicación corporativa de " },
+        { t: "Angular 12 a 16", hl: true },
+        { t: " en producción y desarrollé módulos end-to-end con .NET y Angular." },
+      ],
+      [
+        { t: "En paralelo, desarrollo de manera independiente un " },
+        { t: "SaaS B2B", hl: true },
+        { t: " para la gestión de restaurantes y asesoro a negocios locales de Bogotá en la construcción de su " },
+        { t: "presencia digital", hl: true },
+        { t: "." },
+      ],
+      [
+        { t: "Me especializo en " },
+        { t: "arquitectura limpia", hl: true },
+        { t: " y " },
+        { t: "automatización de procesos", hl: true },
+        { t: ", con un enfoque en construir soluciones eficientes que generen valor real." },
+      ],
     ],
     stats: [
       { number: "4+", label: "Años de experiencia" },
@@ -274,9 +296,31 @@ const en: Dict = {
     headingPre: "A developer who builds",
     headingAccent: "real products",
     paragraphs: [
-      "Software Engineering student in my final semesters. I currently work at Telesentinel, where I design n8n and AI automations that streamline operational processes. Previously, at SoftwareOne, I led the production migration of a corporate application from Angular 12 to 16 and delivered end-to-end modules with .NET and Angular.",
-      "In parallel, I'm independently building a B2B SaaS for restaurant management and advising local businesses in Bogotá on building their digital presence.",
-      "I specialize in clean architecture and process automation, with a focus on building efficient solutions that deliver real value.",
+      [
+        { t: "Software Engineering student in my final semesters. I currently work at " },
+        { t: "Telesentinel", hl: true },
+        { t: ", where I design " },
+        { t: "n8n and AI automations", hl: true },
+        { t: " that streamline operational processes. Previously, at " },
+        { t: "SoftwareOne", hl: true },
+        { t: ", I led the production migration of a corporate application from " },
+        { t: "Angular 12 to 16", hl: true },
+        { t: " and delivered end-to-end modules with .NET and Angular." },
+      ],
+      [
+        { t: "In parallel, I'm independently building a " },
+        { t: "B2B SaaS", hl: true },
+        { t: " for restaurant management and advising local businesses in Bogotá on building their " },
+        { t: "digital presence", hl: true },
+        { t: "." },
+      ],
+      [
+        { t: "I specialize in " },
+        { t: "clean architecture", hl: true },
+        { t: " and " },
+        { t: "process automation", hl: true },
+        { t: ", with a focus on building efficient solutions that deliver real value." },
+      ],
     ],
     stats: [
       { number: "4+", label: "Years of experience" },

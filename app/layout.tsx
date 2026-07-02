@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Syne, Silkscreen } from "next/font/google";
+import { Syne, Silkscreen, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import PixelSpriteLayer from "@/components/PixelSpriteLayer";
 
@@ -14,6 +14,12 @@ const silkscreen = Silkscreen({
   variable: "--font-silkscreen",
   subsets: ["latin"],
   weight: ["400", "700"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
   display: "swap",
 });
 
@@ -100,7 +106,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${syne.variable} ${silkscreen.variable}`}
+      className={`${syne.variable} ${silkscreen.variable} ${spaceGrotesk.variable}`}
     >
       <body className="min-h-screen text-text">
         <script

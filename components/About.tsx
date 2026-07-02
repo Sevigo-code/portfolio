@@ -26,10 +26,8 @@ export default function About({ t }: AboutProps) {
             transition={{ duration: 0.6 }}
             className="about-text"
           >
-            {t.paragraphs.map((p) => (
-              <RevealText key={p.slice(0, 24)} className="about-paragraph">
-                {p}
-              </RevealText>
+            {t.paragraphs.map((segs, i) => (
+              <RevealText key={i} segments={segs} className="about-paragraph" />
             ))}
 
             <div className="about-stats">

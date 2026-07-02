@@ -3,13 +3,34 @@
 import { useRef, useMemo } from 'react';
 import { motion, useScroll, useTransform, MotionValue } from 'motion/react';
 import { REVEAL_CONFIG } from '@/lib/animationConfig';
+import type { Seg } from '@/lib/i18n';
 
 type RevealTextProps = {
-  children: string;
+  segments: Seg[];
   className?: string;
 };
 
-export function RevealText({ children, className = '' }: RevealTextProps) {
+type Word = { text: string; hl?: boolean };
+
+/** Flatten segments into words; a segment that starts without a space
+ *  (e.g. ", donde") glues its first token onto the previous word. */
+function toWords(segments: Seg[]): Word[] {
+  const words: Word[] = [];
+  for (const seg of segments) {
+    const glued = !seg.t.startsWith(' ');
+    const tokens = seg.t.split(' ').filter(Boolean);
+    tokens.forEach((tok, i) => {
+      if (i === 0 && glued && words.length > 0) {
+        words[words.length - 1].text += tok;
+      } else {
+        words.push({ text: tok, hl: seg.hl });
+      }
+    });
+  }
+  return words;
+}
+
+export function RevealText({ segments, className = '' }: RevealTextProps) {
   const containerRef = useRef<HTMLParagraphElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -17,7 +38,7 @@ export function RevealText({ children, className = '' }: RevealTextProps) {
     offset: ['start 1.2', 'end 0'],
   });
 
-  const words = useMemo(() => children.split(' '), [children]);
+  const words = useMemo(() => toWords(segments), [segments]);
 
   return (
     <p ref={containerRef} className={`reveal-text ${className}`}>
@@ -25,8 +46,13 @@ export function RevealText({ children, className = '' }: RevealTextProps) {
         const start = i / words.length;
         const end = start + 1 / words.length;
         return (
-          <RevealWord key={`${i}-${word}`} progress={scrollYProgress} range={[start, end]}>
-            {word}
+          <RevealWord
+            key={`${i}-${word.text}`}
+            progress={scrollYProgress}
+            range={[start, end]}
+            hl={word.hl}
+          >
+            {word.text}
           </RevealWord>
         );
       })}
@@ -38,14 +64,15 @@ type RevealWordProps = {
   children: string;
   progress: MotionValue<number>;
   range: [number, number];
+  hl?: boolean;
 };
 
-function RevealWord({ children, progress, range }: RevealWordProps) {
+function RevealWord({ children, progress, range, hl }: RevealWordProps) {
   const opacity = useTransform(progress, range, [REVEAL_CONFIG.initialOpacity, 1]);
 
   return (
     <>
-      <motion.span className="reveal-word" style={{ opacity }}>
+      <motion.span className={`reveal-word${hl ? ' hl' : ''}`} style={{ opacity }}>
         {children}
       </motion.span>
       {' '}

@@ -12,6 +12,7 @@
 
   --font-display: var(--font-syne);
   --font-mono: var(--font-silkscreen);
+  --font-sans: var(--font-space-grotesk);
 }
 
 html {
@@ -329,10 +330,17 @@ body::after {
 }
 
 .about-text p {
-  color: var(--color-muted);
-  line-height: 1.8;
+  font-family: var(--font-sans), sans-serif;
+  color: color-mix(in srgb, var(--color-text) 85%, transparent);
+  line-height: 1.75;
   margin-bottom: 1.25rem;
-  font-size: 0.95rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+}
+
+.about-text p .reveal-word.hl {
+  color: var(--color-accent);
+  font-weight: 500;
 }
 
 .text-accent {

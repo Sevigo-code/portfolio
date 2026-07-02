@@ -17,5 +17,5 @@ export const TILT_CONFIG = {
 export const REVEAL_CONFIG = {
   duration: 0.5,
   staggerDelay: 0.02,
-  initialOpacity: 0.7,
+  initialOpacity: 0.85,
 };
