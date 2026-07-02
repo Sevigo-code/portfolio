@@ -9,6 +9,7 @@
   --color-text: #f0f0e8;
   --color-muted: #888899;
   --color-border: rgba(200, 242, 97, 0.15);
+  --color-text-soft: color-mix(in srgb, var(--color-text) 85%, transparent);
 
   --font-display: var(--font-syne);
   --font-mono: var(--font-silkscreen);
@@ -178,11 +179,13 @@ body::after {
 
 /* Tagline typography */
 .tagline {
-  font-size: clamp(0.9rem, 2vw, 1.1rem);
-  color: var(--color-muted);
+  font-family: var(--font-sans), sans-serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--color-text-soft);
   line-height: 1.7;
   max-width: 520px;
   font-weight: 400;
+  letter-spacing: 0.01em;
 }
 
 .tagline .highlight {
@@ -331,7 +334,7 @@ body::after {
 
 .about-text p {
   font-family: var(--font-sans), sans-serif;
-  color: color-mix(in srgb, var(--color-text) 85%, transparent);
+  color: var(--color-text-soft);
   line-height: 1.75;
   margin-bottom: 1.25rem;
   font-size: 1.05rem;
@@ -427,11 +430,13 @@ body::after {
 }
 
 .exp-bullets li {
-  font-size: 0.95rem;
-  color: var(--color-muted);
+  font-family: var(--font-sans), sans-serif;
+  font-size: 1rem;
+  color: var(--color-text-soft);
   line-height: 1.6;
   padding-left: 1.75rem;
   position: relative;
+  letter-spacing: 0.01em;
 }
 
 .exp-bullets li::before {
@@ -511,11 +516,13 @@ body::after {
 }
 
 .service-description {
-  color: var(--color-muted);
+  font-family: var(--font-sans), sans-serif;
+  color: var(--color-text-soft);
   line-height: 1.7;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   margin-bottom: 1.25rem;
   max-width: 560px;
+  letter-spacing: 0.01em;
 }
 
 .service-meta {
@@ -554,9 +561,10 @@ body::after {
 }
 
 .services-note {
+  font-family: var(--font-sans), sans-serif;
   margin-top: 2rem;
   color: var(--color-muted);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   text-align: center;
 }
 

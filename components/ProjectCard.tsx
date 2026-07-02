@@ -65,7 +65,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
         </motion.h3>
 
         {/* Description */}
-        <p className="mb-6 max-w-xl font-mono text-sm leading-relaxed text-muted">
+        <p className="mb-6 max-w-xl font-sans text-[0.95rem] leading-relaxed text-text-soft">
           {project.description}
         </p>
 

@@ -55,7 +55,7 @@ export default function Contact({ t }: ContactProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mb-8 max-w-lg font-mono text-sm leading-relaxed text-muted"
+          className="mb-8 max-w-lg font-sans text-[0.95rem] leading-relaxed text-text-soft"
         >
           {t.description}
         </motion.p>

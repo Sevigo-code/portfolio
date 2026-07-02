@@ -12,12 +12,15 @@ type RevealTextProps = {
 
 type Word = { text: string; hl?: boolean };
 
-/** Flatten segments into words; a segment that starts without a space
- *  (e.g. ", donde") glues its first token onto the previous word. */
+/** Flatten segments into words. A segment's first token glues onto the
+ *  previous word only when there is no space on either side of the
+ *  boundary (e.g. "Telesentinel" + ", donde" -> "Telesentinel,"). */
 function toWords(segments: Seg[]): Word[] {
   const words: Word[] = [];
+  let prevEndsWithSpace = true;
   for (const seg of segments) {
-    const glued = !seg.t.startsWith(' ');
+    if (!seg.t) continue;
+    const glued = !seg.t.startsWith(' ') && !prevEndsWithSpace;
     const tokens = seg.t.split(' ').filter(Boolean);
     tokens.forEach((tok, i) => {
       if (i === 0 && glued && words.length > 0) {
@@ -26,6 +29,7 @@ function toWords(segments: Seg[]): Word[] {
         words.push({ text: tok, hl: seg.hl });
       }
     });
+    prevEndsWithSpace = seg.t.endsWith(' ');
   }
   return words;
 }
