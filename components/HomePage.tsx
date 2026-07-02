@@ -16,7 +16,7 @@ export default function HomePage({ lang }: { lang: Lang }) {
 
   return (
     <>
-      <Nav t={dict.nav} />
+      <Nav t={dict.nav} lang={lang} />
       <main>
         <Hero t={dict.hero} />
         <About t={dict.about} />

@@ -3,11 +3,40 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Logo } from "./Logo";
-import type { Dict } from "@/lib/i18n";
+import type { Dict, Lang } from "@/lib/i18n";
 
-type NavProps = { t: Dict["nav"] };
+type NavProps = { t: Dict["nav"]; lang: Lang };
 
-export default function Nav({ t }: NavProps) {
+function LangToggle({ lang, aria }: { lang: Lang; aria: string }) {
+  const seg = (code: Lang, href: string) => {
+    const active = lang === code;
+    return (
+      <a
+        href={href}
+        aria-current={active ? "true" : undefined}
+        className={`px-2.5 py-1.5 transition-colors duration-200 ${
+          active
+            ? "bg-accent font-bold text-bg"
+            : "text-muted hover:text-accent"
+        }`}
+      >
+        {code.toUpperCase()}
+      </a>
+    );
+  };
+
+  return (
+    <div
+      aria-label={aria}
+      className="flex items-center border border-[rgba(200,242,97,0.4)] font-mono text-[11px] uppercase tracking-[0.1em]"
+    >
+      {seg("es", "/")}
+      {seg("en", "/en")}
+    </div>
+  );
+}
+
+export default function Nav({ t, lang }: NavProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -39,25 +68,13 @@ export default function Nav({ t }: NavProps) {
             </li>
           ))}
           <li>
-            <a
-              href={t.switchHref}
-              aria-label={t.switchAria}
-              className="inline-block border border-border px-2.5 py-1 transition-colors duration-200 hover:border-accent hover:text-accent"
-            >
-              {t.switchLabel}
-            </a>
+            <LangToggle lang={lang} aria={t.switchAria} />
           </li>
         </ul>
 
         {/* Mobile: lang switch + hamburger */}
         <div className="md:hidden flex items-center gap-3">
-          <a
-            href={t.switchHref}
-            aria-label={t.switchAria}
-            className="inline-block border border-border px-2.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.1em] text-muted transition-colors duration-200 hover:border-accent hover:text-accent"
-          >
-            {t.switchLabel}
-          </a>
+          <LangToggle lang={lang} aria={t.switchAria} />
           <button
             type="button"
             aria-label={open ? t.closeMenu : t.openMenu}
