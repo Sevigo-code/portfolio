@@ -11,11 +11,11 @@ type ProjectCardProps = {
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: -32 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.55, ease: "easeOut" }}
-      className="group relative overflow-hidden border-b border-border p-6 md:p-8"
+      className="group relative h-full overflow-hidden border border-border p-6 md:p-8"
       style={
         project.featured
           ? { borderLeft: "3px solid var(--color-accent)" }
@@ -30,7 +30,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
       {/* href lives on TiltCard so the anchor wraps the 3D content; clicks
           anywhere bubble up to the link instead of being swallowed by the
           tilt wrapper. */}
-      <TiltCard href={project.href} className="block">
+      <TiltCard href={project.href} className="block h-full">
         {/* Number & Category */}
         <div className="mb-3 flex items-center gap-3 font-mono text-xs uppercase tracking-[0.1em] text-muted">
           <motion.span
@@ -93,4 +93,3 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     </motion.div>
   );
 }
-

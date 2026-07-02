@@ -53,7 +53,7 @@ export type Dict = {
     jobs: Job[];
     linkedInLabel: string;
   };
-  projects: { label: string; heading: string };
+  projects: { label: string; heading: string; prev: string; next: string };
   services: {
     label: string;
     heading: string;
@@ -100,9 +100,9 @@ const es: Dict = {
     available: "Disponible",
     tagline: [
       { t: "Desarrollador full-stack", hl: true },
-      { t: " con experiencia en .NET, Angular y React. Automatizo operaciones con " },
-      { t: "n8n e IA", hl: true },
-      { t: " y actualmente construyo un " },
+      { t: " con experiencia en .NET, Angular y React. Diseño " },
+      { t: "automatizaciones con n8n e IA", hl: true },
+      { t: " que optimizan operaciones, y actualmente desarrollo un " },
       { t: "SaaS B2B", hl: true },
       { t: " para el sector restaurantero." },
     ],
@@ -111,12 +111,12 @@ const es: Dict = {
   },
   about: {
     label: "Sobre mí",
-    headingPre: "Developer que construye",
+    headingPre: "Desarrollador que construye",
     headingAccent: "productos reales",
     paragraphs: [
-      "Soy estudiante de Ingeniería de Software en mis últimos semestres. Trabajo en Telesentinel automatizando operaciones con n8n e IA, y antes construí aplicaciones corporativas en SoftwareOne, donde lideré una migración Angular 12 → 16 en producción y desarrollé módulos completos end-to-end con .NET y Angular.",
-      "En paralelo desarrollo de forma independiente un SaaS B2B para el sector restaurantero, mientras colaboro con negocios locales en Bogotá ayudándoles a construir su presencia digital.",
-      "Me interesa la arquitectura limpia, la automatización de procesos, y construir cosas que realmente resuelvan problemas sin costar un ojo de la cara.",
+      "Estudiante de Ingeniería de Software en los últimos semestres de la carrera. Actualmente trabajo en Telesentinel, donde diseño automatizaciones con n8n e IA para optimizar procesos operativos. Anteriormente, en SoftwareOne, lideré la migración de una aplicación corporativa de Angular 12 a 16 en producción y desarrollé módulos end-to-end con .NET y Angular.",
+      "En paralelo, desarrollo de manera independiente un SaaS B2B para la gestión de restaurantes y asesoro a negocios locales de Bogotá en la construcción de su presencia digital.",
+      "Me especializo en arquitectura limpia y automatización de procesos, con un enfoque en construir soluciones eficientes que generen valor real.",
     ],
     stats: [
       { number: "4+", label: "Años de experiencia" },
@@ -175,7 +175,12 @@ const es: Dict = {
       },
     ],
   },
-  projects: { label: "Trabajo selecto", heading: "Proyectos" },
+  projects: {
+    label: "Trabajo selecto",
+    heading: "Proyectos",
+    prev: "Proyecto anterior",
+    next: "Proyecto siguiente",
+  },
   services: {
     label: "Servicios",
     heading: "Lo que ofrezco",
@@ -255,9 +260,9 @@ const en: Dict = {
     available: "Available",
     tagline: [
       { t: "Full-stack developer", hl: true },
-      { t: " experienced in .NET, Angular and React. I automate operations with " },
-      { t: "n8n and AI", hl: true },
-      { t: " and I'm currently building a " },
+      { t: " experienced in .NET, Angular and React. I design " },
+      { t: "n8n and AI-driven automations", hl: true },
+      { t: " that streamline operations, and I'm currently building a " },
       { t: "B2B SaaS", hl: true },
       { t: " for the restaurant industry." },
     ],
@@ -269,9 +274,9 @@ const en: Dict = {
     headingPre: "A developer who builds",
     headingAccent: "real products",
     paragraphs: [
-      "I'm a Software Engineering student in my final semesters. I work at Telesentinel automating operations with n8n and AI, and previously built corporate applications at SoftwareOne, where I led an Angular 12 → 16 migration in production and shipped end-to-end modules with .NET and Angular.",
-      "On the side I'm independently building a B2B SaaS for the restaurant industry, while helping local businesses in Bogotá build their digital presence.",
-      "I care about clean architecture, process automation, and building things that actually solve problems without costing an arm and a leg.",
+      "Software Engineering student in my final semesters. I currently work at Telesentinel, where I design n8n and AI automations that streamline operational processes. Previously, at SoftwareOne, I led the production migration of a corporate application from Angular 12 to 16 and delivered end-to-end modules with .NET and Angular.",
+      "In parallel, I'm independently building a B2B SaaS for restaurant management and advising local businesses in Bogotá on building their digital presence.",
+      "I specialize in clean architecture and process automation, with a focus on building efficient solutions that deliver real value.",
     ],
     stats: [
       { number: "4+", label: "Years of experience" },
@@ -330,7 +335,12 @@ const en: Dict = {
       },
     ],
   },
-  projects: { label: "Selected work", heading: "Projects" },
+  projects: {
+    label: "Selected work",
+    heading: "Projects",
+    prev: "Previous project",
+    next: "Next project",
+  },
   services: {
     label: "Services",
     heading: "What I offer",
